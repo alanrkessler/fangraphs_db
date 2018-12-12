@@ -1,7 +1,15 @@
 # fangraphs_db
 
-Automating clicking the "Export Data" button on the FanGraphs Leaderboard is more difficult than other data sources. This repo contains some examples using Python and Selenium to scrape the data. 
+Automates clicking the "Export Data" button on [FanGraphs](www.fangraphs.com). The doPostBack that the website implements makes it more difficult to scrape than other data sources. To account for this, the test automation software Selenium is used to capture the delimited file output.
 
-As always, scraping data from the web may not be welcomed by the source and is important to keep in mind. This method is about as slow as a real person, so I feel it is a relatively good citizen.
+--------
+## Resources
 
-[Notebook Example](FanGraphs%20Data%20Example.ipynb)
+* Requires unzipping and placing the Chrome web driver found [here](https://sites.google.com/a/chromium.org/chromedriver/downloads).
+
+* [Notebook Example](FanGraphs%20Data%20Example.ipynb)
+
+--------
+## Disclaimer
+
+Scraping data from the web may not be welcomed by the owner, but this method is about as slow as a real person.
