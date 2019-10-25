@@ -1,7 +1,6 @@
-""" Fangraphs Scraping Functions
-"""
+"""Fangraphs Scraping Functions."""
 
-from pathlib import Path
+from pathlib import Path, PosixPath
 import time
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -12,8 +11,7 @@ import pandas as pd
 
 
 def clear_temp():
-    """Remove temporary leaderboard file"""
-
+    """Remove temporary leaderboard file."""
     # Create the data directory useful for csv output
     if not Path('data').exists():
         Path('data').mkdir()
@@ -28,8 +26,7 @@ def clear_temp():
 
 
 def specify_driver():
-    """Set Chrome webdriver options and return a diver object"""
-
+    """Set Chrome webdriver options and return a diver object."""
     # Set default download directory
     options = webdriver.ChromeOptions()
     prefs = {"download.default_directory": str(Path.cwd() / 'data')}
@@ -42,9 +39,14 @@ def specify_driver():
     cap = DesiredCapabilities.CHROME
     cap["pageLoadStrategy"] = "none"
 
-    driver = webdriver.Chrome(executable_path=chrome_driver,
-                              options=options,
-                              desired_capabilities=cap)
+    if type(chrome_driver) is PosixPath:
+        driver = webdriver.Chrome(executable_path=chrome_driver,
+                                  options=options,
+                                  desired_capabilities=cap)
+    else:
+        driver = webdriver.Chrome(executable_path=chrome_driver.name,
+                                  options=options,
+                                  desired_capabilities=cap)
 
     return driver
 
@@ -63,7 +65,6 @@ def clean_file(path=Path('data') / 'Fangraphs Leaderboard.csv',
         a renamed pandas dataframe.
 
     """
-
     # Define characters to replace prior to being loaded in a database
     char_rep = {' ': '_',
                 '%': 'pct',
@@ -109,8 +110,7 @@ def clean_file(path=Path('data') / 'Fangraphs Leaderboard.csv',
 
 
 def download_leaderboard(link):
-    """Download the leaderboard and return a bool if successful"""
-
+    """Download the leaderboard and return a bool if successful."""
     # Clear any existing file
     clear_temp()
 
