@@ -7,7 +7,7 @@ Automates clicking the "Export Data" button on [FanGraphs](www.fangraphs.com). T
 
 * Requires unzipping and placing the Chrome web driver found [here](https://sites.google.com/a/chromium.org/chromedriver/downloads).
 
-* [Notebook Example](FanGraphs%20Data%20Example.ipynb)
+* [Notebook Example](FanGraphs_Data_Example.ipynb)
 
 --------
 ## Disclaimer
